@@ -3,8 +3,10 @@ import {Provider} from 'react-redux';
 import promise from 'redux-promise-middleware';
 import {CounterReducer} from './features/counter';
 import {RandomReducer} from './features/random';
+import {StudentsReducer} from './features/students';
 import withProvider from './withProvider';
 
+// if you remove this comment the whole app will crash
 /**
  * Create root reducer, containing
  * all features of the application
@@ -12,6 +14,7 @@ import withProvider from './withProvider';
 const rootReducer = combineReducers({
   count: CounterReducer,
   random: RandomReducer,
+  students: StudentsReducer,
 });
 
 /**

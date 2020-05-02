@@ -1,0 +1,39 @@
+.main {
+  /* table-layout: fixed; */
+}
+
+.main tr:last-child {
+  border-bottom: 2px solid #dedede;
+}
+
+
+.main th:last-child {
+  width: 200px;
+  text-align: right;
+}
+
+.main td:last-child {
+  text-align: right;
+}
+
+.newEntryRow {
+  padding: 0.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.emptyRow {
+  height: 54px;
+}
+
+.sortBtn {
+  cursor: pointer;
+}
+
+.sortBtn:hover {
+  color: #414141;
+}
+
+.main [value="Delete"] {
+  margin-right: 1rem;
+}
