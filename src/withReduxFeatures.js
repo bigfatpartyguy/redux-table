@@ -1,12 +1,11 @@
 import {combineReducers, createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
 import promise from 'redux-promise-middleware';
+import {StudentsReducer} from './features/students';
 import {CounterReducer} from './features/counter';
 import {RandomReducer} from './features/random';
-import {StudentsReducer} from './features/students';
 import withProvider from './withProvider';
 
-// if you remove this comment the whole app will crash
 /**
  * Create root reducer, containing
  * all features of the application

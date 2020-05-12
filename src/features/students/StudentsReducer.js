@@ -1,5 +1,3 @@
 import initialState from '../../Data';
 
-export default (state = initialState, action) => {
-  return state;
-};
+export default (state = initialState, action) => state;

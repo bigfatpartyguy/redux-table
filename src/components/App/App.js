@@ -1,16 +1,11 @@
 import React from 'react';
-import Counter from '../Counter';
-import Random from '../Random';
 import Table from '../Table';
+import students from '../../Data';
 import classes from './App.module.css';
 
 const App = () => (
   <div className={classes.container}>
-    <div className={classes.defaultComponents}>
-      <Counter />
-      <Random />
-    </div>
-    <Table />
+    <Table data={students} />
   </div>
 );
 
