@@ -6,14 +6,8 @@ import SubmitRow from '../../SubmitRow';
 import styles from './AddEditModal.module.css';
 
 export default function AddEditModal(props) {
-  const {
-    type,
-    isOpen,
-    handleAddRow,
-    handleEditRow,
-    closeModal,
-    currentValues,
-  } = props;
+  const {id, type, isOpen, handleAddRow, closeModal, currentValues} = props;
+  const handleEditRow = props.handleEditRow.bind(null, id);
   const title = type === 'add' ? 'Add new entry' : 'Edit entry';
   const [disabled, setDisabled] = useState(true);
 
@@ -42,6 +36,7 @@ export default function AddEditModal(props) {
 }
 
 AddEditModal.propTypes = {
+  id: PropTypes.string,
   type: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   isOpen: PropTypes.bool,
   handleAddRow: PropTypes.func,
@@ -54,6 +49,7 @@ AddEditModal.propTypes = {
 };
 
 AddEditModal.defaultProps = {
+  id: '',
   type: false,
   isOpen: false,
   handleAddRow: () => {},

@@ -1,3 +1,3 @@
 export {default as students} from './StudentsReducer';
-export {deleteEntry} from './actionCreators';
+export {deleteEntry, addEntry, editEntry} from './actionCreators';
 export {default as useStudentsValue} from './selectors';

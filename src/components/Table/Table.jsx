@@ -3,7 +3,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {v4 as uuidv4} from 'uuid';
 import {connect} from 'react-redux';
 import {
   openDeleteModal,
@@ -24,7 +23,6 @@ const Table = props => {
     students,
     rowsPerPage,
     page,
-    openedModals,
     studentId,
     sortFieldName,
     sortDirectionAsc,
@@ -33,27 +31,7 @@ const Table = props => {
     openNewEntryModal,
   } = props;
 
-  const handleOpenAddModal = () => {
-    this.setState(state => {
-      const openedModals = {...state.openedModals};
-      openedModals.add = true;
-      return {
-        openedModals,
-      };
-    });
-  };
-
-  const handleOpenEditModal = id => {
-    this.setState(state => {
-      const openedModals = {...state.openedModals};
-      openedModals.edit = true;
-      return {
-        openedModals,
-        studentId: id,
-      };
-    });
-  };
-
+  // this function doesn't work
   const handleSort = value => {
     this.setState(state => {
       let {sortFieldName, sortDirectionAsc} = state;
