@@ -8,13 +8,14 @@ import {connect} from 'react-redux';
 import {
   openDeleteModal,
   openEditModal,
-  opendNewEntryModal,
+  openNewEntryModal,
 } from 'features/openedModals';
+import {setStudentId} from 'features/studentId';
 import TableHeaderCell from '../TableHeaderCell';
 import Button from '../Button';
 import PaginationContainer from '../Pagination';
 import DeleteModalContainer from '../Modals/DeleteModal';
-import AddEditModal from '../Modals/AddEditModal/AddEditModal';
+import AddEditModalContainer from '../Modals/AddEditModal';
 import {sortRows, getStudentById, getDateMask} from '../../features/helpers';
 import styles from './Table.module.css';
 
@@ -28,19 +29,9 @@ const Table = props => {
     sortFieldName,
     sortDirectionAsc,
     openDeleteModal,
+    openEditModal,
+    openNewEntryModal,
   } = props;
-  console.log(props);
-
-  // const handleOpenDeleteModal = id => {
-  //   this.setState(state => {
-  //     const openedModals = {...state.openedModals};
-  //     openedModals.delete = true;
-  //     return {
-  //       openedModals,
-  //       studentId: id,
-  //     };
-  //   });
-  // };
 
   const handleOpenAddModal = () => {
     this.setState(state => {
@@ -105,7 +96,7 @@ const Table = props => {
               />
               <Button
                 text="Edit"
-                onClick={() => handleOpenEditModal(id)}
+                onClick={() => openEditModal(id)}
                 btnRole="edit"
               />
             </td>
@@ -169,16 +160,12 @@ const Table = props => {
         <Button
           text="Add new entry"
           btnRole="submit"
-          onClick={handleOpenAddModal}
+          onClick={openNewEntryModal}
         />
       </div>
       <PaginationContainer selectOptions={[2, 4, 6]} />
       <DeleteModalContainer id={studentId} />
-      <AddEditModal
-        type={openedModals.add && 'add'}
-        isOpen={openedModals.add || openedModals.edit}
-        currentValues={openedModals.edit && getStudentById(students, studentId)}
-      />
+      <AddEditModalContainer />
     </div>
   );
 };
@@ -194,10 +181,13 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  openNewEntryModal: () => {},
-  openEditModal: () => {},
+  openNewEntryModal: () => dispatch(openNewEntryModal()),
+  openEditModal: id => {
+    dispatch(setStudentId(id));
+    dispatch(openEditModal(id));
+  },
   openDeleteModal: id => {
-    console.log(id);
+    dispatch(setStudentId(id));
     dispatch(openDeleteModal());
   },
 });

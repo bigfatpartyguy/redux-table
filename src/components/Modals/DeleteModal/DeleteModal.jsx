@@ -5,18 +5,22 @@ import Button from '../../Button';
 import styles from './DeleteModal.module.css';
 
 export default function DeleteModal(props) {
-  const {isOpen, handleDeleteClick, handleCloseModal} = props;
+  const {isOpen, handleDeleteClick, closeModal, id} = props;
   return (
     <CommonModal
       isOpen={isOpen}
-      handleCloseModal={handleCloseModal}
+      handleCloseModal={closeModal}
       contentLabel="Confirm row deletion">
       <div className={styles.container}>
         <h2>Are you sure?</h2>
         <h4>You won&apos;t be able to revert this</h4>
         <div>
-          <Button text="Delete" onClick={handleDeleteClick} btnRole="danger" />
-          <Button text="Cancel" onClick={handleCloseModal} />
+          <Button
+            text="Delete"
+            onClick={() => handleDeleteClick(id)}
+            btnRole="danger"
+          />
+          <Button text="Cancel" onClick={closeModal} />
         </div>
       </div>
     </CommonModal>
@@ -26,11 +30,13 @@ export default function DeleteModal(props) {
 DeleteModal.propTypes = {
   isOpen: PropTypes.bool,
   handleDeleteClick: PropTypes.func,
-  handleCloseModal: PropTypes.func,
+  closeModal: PropTypes.func,
+  id: PropTypes.string,
 };
 
 DeleteModal.defaultProps = {
   isOpen: false,
   handleDeleteClick: () => {},
-  handleCloseModal: () => {},
+  closeModal: () => {},
+  id: '',
 };

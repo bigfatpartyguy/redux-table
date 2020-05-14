@@ -11,7 +11,7 @@ export default function AddEditModal(props) {
     isOpen,
     handleAddRow,
     handleEditRow,
-    handleCloseModal,
+    closeModal,
     currentValues,
   } = props;
   const title = type === 'add' ? 'Add new entry' : 'Edit entry';
@@ -20,7 +20,7 @@ export default function AddEditModal(props) {
   return (
     <CommonModal
       isOpen={isOpen}
-      handleCloseModal={handleCloseModal}
+      handleCloseModal={closeModal}
       contentLabel={title}>
       <div className={styles.container}>
         <h2>{title}</h2>
@@ -34,7 +34,7 @@ export default function AddEditModal(props) {
             btnRole="submit"
             text="Ok"
           />
-          <Button text="Cancel" onClick={handleCloseModal} />
+          <Button text="Cancel" onClick={closeModal} />
         </SubmitRow>
       </div>
     </CommonModal>
@@ -46,7 +46,7 @@ AddEditModal.propTypes = {
   isOpen: PropTypes.bool,
   handleAddRow: PropTypes.func,
   handleEditRow: PropTypes.func,
-  handleCloseModal: PropTypes.func,
+  closeModal: PropTypes.func,
   currentValues: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.objectOf(PropTypes.string),
@@ -58,6 +58,6 @@ AddEditModal.defaultProps = {
   isOpen: false,
   handleAddRow: () => {},
   handleEditRow: () => {},
-  handleCloseModal: () => {},
+  closeModal: () => {},
   currentValues: false,
 };

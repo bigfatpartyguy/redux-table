@@ -2,5 +2,6 @@ export {default as openedModals} from './openedModalsReducer';
 export {
   openDeleteModal,
   openEditModal,
-  opendNewEntryModal,
+  openNewEntryModal,
+  closeModal,
 } from './actionCreators';

@@ -1,4 +1,6 @@
 import {connect} from 'react-redux';
+import {closeModal} from 'features/openedModals';
+import {deleteEntry} from 'features/students';
 import DeleteModal from './DeleteModal';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -6,24 +8,12 @@ const mapStateToProps = (state, ownProps) => ({
   ...ownProps,
 });
 
-// const handleCloseModal = () => {
-//     this.setState(state => {
-//       const openedModals = {...state.openedModals};
-//       Object.keys(openedModals).forEach(key => {
-//         openedModals[key] = false;
-//       });
-//       return {openedModals};
-//     });
-//   };
+const mapDispatchToProps = dispatch => ({
+  closeModal: () => dispatch(closeModal()),
+  handleDeleteClick: id => {
+    dispatch(deleteEntry(id));
+    dispatch(closeModal());
+  },
+});
 
-//   const handleDeleteClick = () => {
-//     this.setState(state => {
-//       const students = state.students.filter(row => row.id !== state.studentId);
-//       return {
-//         students,
-//       };
-//     });
-//     this.handleCloseModal();
-//   };
-
-export default connect(mapStateToProps)(DeleteModal);
+export default connect(mapStateToProps, mapDispatchToProps)(DeleteModal);
