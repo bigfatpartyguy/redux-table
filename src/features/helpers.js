@@ -1,5 +1,6 @@
+/* eslint-disable fp/no-mutating-methods */
 function sortRows(rows, fieldName, directionAsc) {
-  const result = rows;
+  const result = [...rows];
   if (directionAsc) {
     result.sort((a, b) => {
       if (Date.parse(a[fieldName])) {

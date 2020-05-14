@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import CommonModal from '../CommonModal';
-import Button from '../../Button/Button';
-import SubmitRow from '../../SubmitRow/SubmitRow';
+import Button from '../../Button';
+import SubmitRow from '../../SubmitRow';
 import styles from './AddEditModal.module.css';
 
 export default function AddEditModal(props) {

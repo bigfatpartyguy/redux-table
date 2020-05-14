@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
-import Input from '../Input/Input';
+import Input from '../Input';
 import styles from './SubmitRow.module.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import useFormValidation from './useFormValidation';

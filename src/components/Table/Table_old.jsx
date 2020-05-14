@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {v4 as uuidv4} from 'uuid';
-import TableHeaderCell from '../TableHeaderCell';
-import Button from '../Button';
-import PaginationContainer from '../Pagination';
+import TableHeaderCell from '../TableHeaderCell/TableHeaderCell';
+import Button from '../Button/Button';
+import Pagination from '../Pagination/Pagination';
 import DeleteModal from '../CommonModal/Modals/DeleteModal';
 import AddEditModal from '../CommonModal/Modals/AddEditModal';
 import {sortRows, getStudentById, getDateMask} from '../../features/helpers';
@@ -28,6 +28,14 @@ class Table extends Component {
     };
     this.state = initialState;
   }
+
+  handleSelect = event => {
+    event.persist();
+    this.setState(() => ({
+      page: 1,
+      rowsPerPage: +event.target.value,
+    }));
+  };
 
   handleDeleteClick = () => {
     this.setState(state => {
@@ -260,7 +268,16 @@ class Table extends Component {
             onClick={this.handleOpenAddModal}
           />
         </div>
-        <PaginationContainer selectOptions={[2, 4, 6]} />
+        <Pagination
+          value={rowsPerPage}
+          onChange={this.handleSelect}
+          selectOptions={[2, 4, 6]}
+          handleNextClick={this.handleNextClick}
+          handlePrevClick={this.handlePrevClick}
+          handlePageClick={this.handlePageClick}
+          page={page}
+          pages={Math.ceil(students.length / rowsPerPage)}
+        />
         <DeleteModal
           isOpen={modalsOpen.delete}
           handleCloseModal={this.handleCloseModal}
@@ -299,4 +316,4 @@ Table.defaultProps = {
   ],
 };
 
-export default Table;
+// export default Table;

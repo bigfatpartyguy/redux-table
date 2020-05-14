@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '../Button/Button';
-import Select from '../Select/Select';
+import Button from '../Button';
+import Select from '../Select';
 import styles from './Pagination.module.css';
 
-export default function Pagination(props) {
+const Pagination = props => {
   const {
     selectOptions,
     onChange,
@@ -41,7 +41,9 @@ export default function Pagination(props) {
       <Button disabled={page === pages} onClick={handleNextClick} text="Next" />
     </div>
   );
-}
+};
+
+export default Pagination;
 
 Pagination.propTypes = {
   selectOptions: PropTypes.arrayOf(PropTypes.number),

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CommonModal from '../CommonModal';
-import Button from '../../Button/Button';
+import Button from '../../Button';
 import styles from './DeleteModal.module.css';
 
 export default function DeleteModal(props) {
