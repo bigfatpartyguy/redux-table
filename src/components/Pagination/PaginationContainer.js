@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import Pagination from './Pagination';
 import {setRowsPerPage} from '../../features/rowsPerPage';
-import {resetPage} from '../../features/page';
+import {resetPage, setPage, nextPage, prevPage} from '../../features/page';
 
 const mapStateToProps = (state, ownProps) => ({
   value: state.rowsPerPage,
@@ -11,9 +11,11 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleNextClick: () => {},
-  handlePrevClick: () => {},
-  handlePageClick: () => {},
+  handleNextClick: () => dispatch(nextPage()),
+  handlePrevClick: () => dispatch(prevPage()),
+  handlePageClick: event => {
+    dispatch(setPage(+event.target.value));
+  },
   onChange: event => {
     dispatch(resetPage());
     dispatch(setRowsPerPage(+event.target.value));

@@ -1,2 +1,2 @@
 export {default as page} from './pageReducer';
-export {resetPage} from './actionCreators';
+export {resetPage, setPage, nextPage, prevPage} from './actionCreators';

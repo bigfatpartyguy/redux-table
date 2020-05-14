@@ -21,6 +21,7 @@ const Pagination = props => {
       const key = index;
       let active;
       if (key + 1 === page) {
+        // eslint-disable-next-line fp/no-mutation
         active = 'active';
       }
       return (
@@ -38,7 +39,15 @@ const Pagination = props => {
       <Button disabled={page === 1} onClick={handlePrevClick} text="Previous" />
       <Select options={selectOptions} value={value} onChange={onChange} />
       {pagination}
-      <Button disabled={page === pages} onClick={handleNextClick} text="Next" />
+      <Button
+        disabled={page === pages}
+        onClick={() => {
+          if (page !== pages) {
+            handleNextClick();
+          }
+        }}
+        text="Next"
+      />
     </div>
   );
 };
