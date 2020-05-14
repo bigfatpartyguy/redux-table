@@ -4,8 +4,8 @@ import {v4 as uuidv4} from 'uuid';
 import TableHeaderCell from '../TableHeaderCell/TableHeaderCell';
 import Button from '../Button/Button';
 import Pagination from '../Pagination/Pagination';
-import DeleteModal from '../CommonModal/Modals/DeleteModal';
-import AddEditModal from '../CommonModal/Modals/AddEditModal';
+import DeleteModal from '../Modals/DeleteModal/DeleteModal';
+import AddEditModal from '../Modals/AddEditModal/AddEditModal';
 import {sortRows, getStudentById, getDateMask} from '../../features/helpers';
 import styles from './Table.module.css';
 

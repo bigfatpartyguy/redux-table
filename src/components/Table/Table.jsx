@@ -1,14 +1,20 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/no-this-in-sfc */
 /* eslint-disable react/prop-types */
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {v4 as uuidv4} from 'uuid';
+import {connect} from 'react-redux';
+import {
+  openDeleteModal,
+  openEditModal,
+  opendNewEntryModal,
+} from 'features/openedModals';
 import TableHeaderCell from '../TableHeaderCell';
 import Button from '../Button';
 import PaginationContainer from '../Pagination';
-import DeleteModal from '../CommonModal/Modals/DeleteModal';
-import AddEditModal from '../CommonModal/Modals/AddEditModal';
+import DeleteModalContainer from '../Modals/DeleteModal';
+import AddEditModal from '../Modals/AddEditModal/AddEditModal';
 import {sortRows, getStudentById, getDateMask} from '../../features/helpers';
 import styles from './Table.module.css';
 
@@ -21,63 +27,20 @@ const Table = props => {
     studentId,
     sortFieldName,
     sortDirectionAsc,
+    openDeleteModal,
   } = props;
   console.log(props);
-  const handleDeleteClick = () => {
-    this.setState(state => {
-      const students = state.students.filter(row => row.id !== state.studentId);
-      return {
-        students,
-      };
-    });
-    this.handleCloseModal();
-  };
 
-  const handleSubmitRow = row => {
-    const newStudent = {...row};
-    const {firstName, secondName, birthday} = newStudent;
-    if (!firstName || !secondName || !birthday) {
-      // eslint-disable-next-line no-undef, no-alert
-      alert('Please, fill in the input fields.');
-      return;
-    }
-    newStudent.birthday = new Date(birthday).toISOString();
-    newStudent.id = uuidv4();
-    this.setState(state => ({students: [...state.students, newStudent]}));
-    this.handleCloseModal();
-  };
-
-  const handleEditRow = row => {
-    const updatedStudent = {...row};
-    const {firstName, secondName, birthday} = updatedStudent;
-    if (!firstName || !secondName || !birthday) {
-      // eslint-disable-next-line no-undef, no-alert
-      alert('Please, fill in the input fields.');
-      return;
-    }
-    updatedStudent.birthday = new Date(birthday).toISOString();
-    this.setState(state => {
-      const students = state.students.map(student => {
-        if (student.id === state.studentId) {
-          return {...updatedStudent, id: state.studentId};
-        }
-        return student;
-      });
-      return {students};
-    });
-    this.handleCloseModal();
-  };
-
-  const handleOpenDeleteModal = id => {
-    this.setState(state => {
-      const openedModals = {...state.openedModals};
-      openedModals.delete = true;
-      return {
-        openedModals,
-        studentId: id,
-      };
-    });
-  };
+  // const handleOpenDeleteModal = id => {
+  //   this.setState(state => {
+  //     const openedModals = {...state.openedModals};
+  //     openedModals.delete = true;
+  //     return {
+  //       openedModals,
+  //       studentId: id,
+  //     };
+  //   });
+  // };
 
   const handleOpenAddModal = () => {
     this.setState(state => {
@@ -97,16 +60,6 @@ const Table = props => {
         openedModals,
         studentId: id,
       };
-    });
-  };
-
-  const handleCloseModal = () => {
-    this.setState(state => {
-      const openedModals = {...state.openedModals};
-      Object.keys(openedModals).forEach(key => {
-        openedModals[key] = false;
-      });
-      return {openedModals};
     });
   };
 
@@ -147,7 +100,7 @@ const Table = props => {
             <td>
               <Button
                 text="Delete"
-                onClick={() => handleOpenDeleteModal(id)}
+                onClick={() => openDeleteModal(id)}
                 btnRole="danger"
               />
               <Button
@@ -220,21 +173,35 @@ const Table = props => {
         />
       </div>
       <PaginationContainer selectOptions={[2, 4, 6]} />
-      <DeleteModal
-        isOpen={openedModals.delete}
-        handleCloseModal={handleCloseModal}
-        handleDeleteClick={handleDeleteClick}
-      />
+      <DeleteModalContainer id={studentId} />
       <AddEditModal
         type={openedModals.add && 'add'}
         isOpen={openedModals.add || openedModals.edit}
-        handleCloseModal={handleCloseModal}
-        handleAddRow={handleSubmitRow}
-        handleEditRow={handleEditRow}
         currentValues={openedModals.edit && getStudentById(students, studentId)}
       />
     </div>
   );
 };
 
-export default Table;
+const mapStateToProps = state => ({
+  students: state.students,
+  rowsPerPage: state.rowsPerPage,
+  page: state.page,
+  openedModals: state.openedModals,
+  studentId: state.studentId,
+  sortFieldName: state.sortFieldName,
+  sortDirectionAsc: state.sortDirectionAsc,
+});
+
+const mapDispatchToProps = dispatch => ({
+  openNewEntryModal: () => {},
+  openEditModal: () => {},
+  openDeleteModal: id => {
+    console.log(id);
+    dispatch(openDeleteModal());
+  },
+});
+
+const TableContainer = connect(mapStateToProps, mapDispatchToProps)(Table);
+
+export default TableContainer;

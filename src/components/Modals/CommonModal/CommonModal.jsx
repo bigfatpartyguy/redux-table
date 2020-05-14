@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
-import Button from '../Button';
+import Button from '../../Button';
 import styles from './CommonModal.module.css';
 
 Modal.setAppElement('#root');
