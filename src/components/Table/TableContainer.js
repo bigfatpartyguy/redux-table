@@ -4,26 +4,27 @@ import {
   openEditModal,
   openNewEntryModal,
 } from 'features/openedModals';
-import {setStudentId} from 'features/studentId';
-import {sortEntries} from 'features/students';
+import {setRowId} from 'features/rowId';
+import {sortEntries} from 'features/tableData';
 import Table from './Table';
 
-const mapStateToProps = state => ({
-  ...state.studentsData,
+const mapStateToProps = (state, ownProps) => ({
+  ...state.tableData,
   ...state.openedModals,
   ...state.pagination,
   openedModals: state.openedModals,
-  studentId: state.studentId,
+  rowId: state.rowId,
+  ...ownProps,
 });
 
 const mapDispatchToProps = dispatch => ({
   openNewEntryModal: () => dispatch(openNewEntryModal()),
   openEditModal: id => {
-    dispatch(setStudentId(id));
+    dispatch(setRowId(id));
     dispatch(openEditModal(id));
   },
   openDeleteModal: id => {
-    dispatch(setStudentId(id));
+    dispatch(setRowId(id));
     dispatch(openDeleteModal());
   },
   handleSort: fieldName => dispatch(sortEntries(fieldName)),

@@ -6,7 +6,15 @@ import SubmitRow from '../../SubmitRow';
 import styles from './AddEditModal.module.css';
 
 export default function AddEditModal(props) {
-  const {id, type, isOpen, handleAddRow, closeModal, currentValues} = props;
+  const {
+    id,
+    type,
+    isOpen,
+    handleAddRow,
+    closeModal,
+    currentValues,
+    columns,
+  } = props;
   const handleEditRow = props.handleEditRow.bind(null, id);
   const title = type === 'add' ? 'Add new entry' : 'Edit entry';
   const [disabled, setDisabled] = useState(true);
@@ -19,6 +27,7 @@ export default function AddEditModal(props) {
       <div className={styles.container}>
         <h2>{title}</h2>
         <SubmitRow
+          columns={columns}
           onSubmit={type === 'add' ? handleAddRow : handleEditRow}
           currentValues={currentValues}
           setDisabled={setDisabled}>
@@ -46,6 +55,13 @@ AddEditModal.propTypes = {
     PropTypes.bool,
     PropTypes.objectOf(PropTypes.string),
   ]),
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      key: PropTypes.string,
+      isDate: PropTypes.bool,
+    })
+  ),
 };
 
 AddEditModal.defaultProps = {
@@ -56,4 +72,18 @@ AddEditModal.defaultProps = {
   handleEditRow: () => {},
   closeModal: () => {},
   currentValues: false,
+  columns: [
+    {
+      title: 'First Name',
+      key: 'firstName',
+    },
+    {
+      title: 'Second Name',
+      key: 'secondName',
+    },
+    {
+      title: 'Date of birth',
+      key: 'birthday',
+    },
+  ],
 };

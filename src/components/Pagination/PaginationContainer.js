@@ -11,9 +11,7 @@ import Pagination from './Pagination';
 const mapStateToProps = (state, ownProps) => ({
   value: state.pagination.rowsPerPage,
   page: state.pagination.page,
-  pages: Math.ceil(
-    state.studentsData.students.length / state.pagination.rowsPerPage
-  ),
+  pages: Math.ceil(state.tableData.data.length / state.pagination.rowsPerPage),
   ...ownProps,
 });
 

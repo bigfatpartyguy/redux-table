@@ -10,30 +10,32 @@ import styles from './Table.module.css';
 
 const Table = props => {
   const {
-    students,
-    rowsPerPage,
-    page,
-    studentId,
+    data,
     sortFieldName,
     sortDirectionAsc,
+    handleSort,
+    rowId,
+    rowsPerPage,
+    page,
     openDeleteModal,
     openEditModal,
     openNewEntryModal,
-    handleSort,
+    columns,
   } = props;
 
   const renderTableRows = () => {
     const start = (page - 1) * rowsPerPage;
     const end = start + rowsPerPage;
-    const pageToDisplay = students
+    const pageToDisplay = data
       .map(row => {
         const {id} = row;
         return (
           <tr key={id}>
-            <td>{row.firstName}</td>
-            <td>{row.secondName}</td>
-            <td>{getDateMask(row.birthday)}</td>
-            <td>{row.email}</td>
+            {columns.map(column => (
+              <td key={column.key}>
+                {column.isDate ? getDateMask(row[column.key]) : row[column.key]}
+              </td>
+            ))}
             <td>
               <Button
                 text="Delete"
@@ -56,7 +58,7 @@ const Table = props => {
         const key = ind;
         return (
           <tr key={key} className={styles.emptyRow}>
-            <td colSpan="4">&nbsp;</td>
+            <td colSpan={columns.length + 1}>&nbsp;</td>
           </tr>
         );
       });
@@ -69,34 +71,16 @@ const Table = props => {
       <table className={styles.main}>
         <thead>
           <tr>
-            <TableHeaderCell
-              value="firstName"
-              sortFieldName={sortFieldName}
-              sortDirectionAsc={sortDirectionAsc}
-              onClick={handleSort}>
-              First Name
-            </TableHeaderCell>
-            <TableHeaderCell
-              value="secondName"
-              sortFieldName={sortFieldName}
-              sortDirectionAsc={sortDirectionAsc}
-              onClick={handleSort}>
-              Second Name
-            </TableHeaderCell>
-            <TableHeaderCell
-              value="birthday"
-              sortFieldName={sortFieldName}
-              sortDirectionAsc={sortDirectionAsc}
-              onClick={handleSort}>
-              Date of birth
-            </TableHeaderCell>
-            <TableHeaderCell
-              value="email"
-              sortFieldName={sortFieldName}
-              sortDirectionAsc={sortDirectionAsc}
-              onClick={handleSort}>
-              Email
-            </TableHeaderCell>
+            {columns.map(column => (
+              <TableHeaderCell
+                key={column.key}
+                value={column.key}
+                sortFieldName={sortFieldName}
+                sortDirectionAsc={sortDirectionAsc}
+                onClick={handleSort}>
+                {column.title}
+              </TableHeaderCell>
+            ))}
             <th>Controls</th>
           </tr>
         </thead>
@@ -110,8 +94,8 @@ const Table = props => {
         />
       </div>
       <PaginationContainer selectOptions={[2, 4, 6]} />
-      <DeleteModalContainer id={studentId} />
-      <AddEditModalContainer />
+      <DeleteModalContainer id={rowId} />
+      <AddEditModalContainer columns={columns} />
     </div>
   );
 };
@@ -119,16 +103,23 @@ const Table = props => {
 export default Table;
 
 Table.propTypes = {
-  students: PropTypes.arrayOf(
+  data: PropTypes.arrayOf(
     PropTypes.shape({
       firstName: PropTypes.string,
       secondName: PropTypes.string,
       birthday: PropTypes.string,
     })
   ),
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      key: PropTypes.string,
+      isDate: PropTypes.bool,
+    })
+  ),
   rowsPerPage: PropTypes.number,
   page: PropTypes.number,
-  studentId: PropTypes.string,
+  rowId: PropTypes.string,
   sortFieldName: PropTypes.string,
   sortDirectionAsc: PropTypes.bool,
   openDeleteModal: PropTypes.func,
@@ -138,16 +129,30 @@ Table.propTypes = {
 };
 
 Table.defaultProps = {
-  students: [
+  data: [
     {
       firstName: 'John',
       secondName: 'Doe',
       birthday: 1900,
     },
   ],
+  columns: [
+    {
+      title: 'First Name',
+      key: 'firstName',
+    },
+    {
+      title: 'Second Name',
+      key: 'secondName',
+    },
+    {
+      title: 'Date of birth',
+      key: 'birthday',
+    },
+  ],
   rowsPerPage: 4,
   page: 1,
-  studentId: '',
+  rowId: '',
   sortFieldName: '',
   sortDirectionAsc: true,
   openDeleteModal: () => {},

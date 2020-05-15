@@ -75,6 +75,26 @@ const students = [
   },
 ];
 
+export const columns = [
+  {
+    title: 'First Name',
+    key: 'firstName',
+  },
+  {
+    title: 'Second Name',
+    key: 'secondName',
+  },
+  {
+    title: 'Date of birth',
+    key: 'birthday',
+    isDate: true,
+  },
+  {
+    title: 'Email',
+    key: 'email',
+  },
+];
+
 students.forEach(student => {
   // eslint-disable-next-line
   student.id = uuidv4();

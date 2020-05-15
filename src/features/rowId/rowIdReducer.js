@@ -1,8 +1,8 @@
-import {SET_STUDENT_ID} from './actionTypes';
+import {SET_ROW_ID} from './actionTypes';
 
 export default (state = null, action) => {
   switch (action.type) {
-    case SET_STUDENT_ID:
+    case SET_ROW_ID:
       return action.payload;
     default:
       return state;

@@ -1,16 +1,17 @@
 import {connect} from 'react-redux';
 import {closeModal} from 'features/openedModals';
-import {addEntry, editEntry} from 'features/students';
+import {addEntry, editEntry} from 'features/tableData';
 import AddEditModal from './AddEditModal';
 import {getStudentById} from '../../../features/helpers';
 
 const mapStateToProps = (state, ownProps) => ({
   isOpen: state.openedModals.add || state.openedModals.edit,
   type: state.openedModals.add && 'add',
-  id: state.studentId,
+  id: state.rowId,
   currentValues:
     state.openedModals.edit &&
-    getStudentById(state.studentsData.students, state.studentId),
+    getStudentById(state.tableData.data, state.rowId),
+  ...ownProps,
 });
 
 const mapDispatchToProps = dispatch => ({

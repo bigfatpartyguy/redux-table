@@ -1,12 +1,11 @@
 import {v4 as uuidv4} from 'uuid';
-import data from '../../Data';
+import tableData, {columns} from '../../Data';
 import {sortRows} from '../helpers';
 import {DELETE_ENTRY, ADD_ENTRY, EDIT_ENTRY, SORT} from './actionTypes';
 
-const firstField = Object.keys(data[0])[0];
 const initialState = {
-  students: sortRows(data, firstField, true),
-  sortFieldName: firstField,
+  data: sortRows(tableData, columns[0].key, true),
+  sortFieldName: columns[0].key,
   sortDirectonAsc: true,
 };
 
@@ -15,42 +14,42 @@ export default (state = initialState, action) => {
     case DELETE_ENTRY:
       return {
         ...state,
-        students: state.students.filter(entry => entry.id !== action.payload),
+        data: state.data.filter(entry => entry.id !== action.payload),
       };
     case ADD_ENTRY: {
-      const newStudent = {
+      const newEntry = {
         ...action.payload,
         birthday: new Date(action.payload.birthday).toISOString(),
         id: uuidv4(),
       };
-      return {...state, students: [...state.students, newStudent]};
+      return {...state, data: [...state.data, newEntry]};
     }
     case EDIT_ENTRY: {
       const {entry, id} = action.payload;
-      const updatedStudent = {
+      const updatedEntry = {
         ...entry,
         birthday: new Date(entry.birthday).toISOString(),
       };
-      const students = state.students.map(student => {
-        if (student.id === id) {
-          return {...updatedStudent, id};
+      const data = state.data.map(entity => {
+        if (entity.id === id) {
+          return {...updatedEntry, id};
         }
-        return student;
+        return entity;
       });
-      return {...state, students};
+      return {...state, data};
     }
     case SORT: {
-      const {students, sortFieldName, sortDirectionAsc} = state;
+      const {data, sortFieldName, sortDirectionAsc} = state;
       if (sortFieldName === action.payload) {
         return {
           ...state,
-          students: sortRows(students, sortFieldName, !sortDirectionAsc),
+          data: sortRows(data, sortFieldName, !sortDirectionAsc),
           sortDirectionAsc: !sortDirectionAsc,
         };
       }
       return {
         ...state,
-        students: sortRows(students, action.payload, true),
+        data: sortRows(data, action.payload, true),
         sortFieldName: action.payload,
         sortDirectionAsc: true,
       };
