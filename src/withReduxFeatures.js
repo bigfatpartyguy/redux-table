@@ -2,8 +2,7 @@ import {combineReducers, createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
 import promise from 'redux-promise-middleware';
 import {studentsData} from 'features/students';
-import {page} from 'features/page';
-import {rowsPerPage} from 'features/rowsPerPage';
+import {pagination} from 'features/pagination';
 import {studentId} from 'features/studentId';
 import {openedModals} from 'features/openedModals';
 import withProvider from './withProvider';
@@ -14,8 +13,7 @@ import withProvider from './withProvider';
  */
 const rootReducer = combineReducers({
   studentsData,
-  page,
-  rowsPerPage,
+  pagination,
   studentId,
   openedModals,
 });

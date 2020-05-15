@@ -1,12 +1,19 @@
 import {connect} from 'react-redux';
+import {
+  resetPage,
+  setPage,
+  nextPage,
+  prevPage,
+  setRowsPerPage,
+} from 'features/pagination';
 import Pagination from './Pagination';
-import {setRowsPerPage} from '../../features/rowsPerPage';
-import {resetPage, setPage, nextPage, prevPage} from '../../features/page';
 
 const mapStateToProps = (state, ownProps) => ({
-  value: state.rowsPerPage,
-  page: state.page,
-  pages: Math.ceil(state.studentsData.students.length / state.rowsPerPage),
+  value: state.pagination.rowsPerPage,
+  page: state.pagination.page,
+  pages: Math.ceil(
+    state.studentsData.students.length / state.pagination.rowsPerPage
+  ),
   ...ownProps,
 });
 

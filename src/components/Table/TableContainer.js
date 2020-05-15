@@ -9,11 +9,9 @@ import {sortEntries} from 'features/students';
 import Table from './Table';
 
 const mapStateToProps = state => ({
-  students: state.studentsData.students,
-  sortFieldName: state.studentsData.sortFieldName,
-  sortDirectionAsc: state.studentsData.sortDirectionAsc,
-  rowsPerPage: state.rowsPerPage,
-  page: state.page,
+  ...state.studentsData,
+  ...state.openedModals,
+  ...state.pagination,
   openedModals: state.openedModals,
   studentId: state.studentId,
 });

@@ -1,1 +1,0 @@
-export const SET_ROWS_PER_PAGE = 'SET_ROWS_PER_PAGE';
