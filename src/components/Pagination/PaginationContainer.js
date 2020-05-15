@@ -6,7 +6,7 @@ import {resetPage, setPage, nextPage, prevPage} from '../../features/page';
 const mapStateToProps = (state, ownProps) => ({
   value: state.rowsPerPage,
   page: state.page,
-  pages: Math.ceil(state.students.length / state.rowsPerPage),
+  pages: Math.ceil(state.studentsData.students.length / state.rowsPerPage),
   ...ownProps,
 });
 

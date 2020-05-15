@@ -1,11 +1,9 @@
 import {combineReducers, createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
 import promise from 'redux-promise-middleware';
-import {students} from 'features/students';
+import {studentsData} from 'features/students';
 import {page} from 'features/page';
 import {rowsPerPage} from 'features/rowsPerPage';
-import {sortFieldName} from 'features/sortFieldName';
-import {sortDirectionAsc} from 'features/sortDirectionAsc';
 import {studentId} from 'features/studentId';
 import {openedModals} from 'features/openedModals';
 import withProvider from './withProvider';
@@ -15,11 +13,9 @@ import withProvider from './withProvider';
  * all features of the application
  */
 const rootReducer = combineReducers({
-  students,
+  studentsData,
   page,
   rowsPerPage,
-  sortFieldName,
-  sortDirectionAsc,
   studentId,
   openedModals,
 });

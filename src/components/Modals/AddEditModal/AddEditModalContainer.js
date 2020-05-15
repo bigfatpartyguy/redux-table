@@ -9,7 +9,8 @@ const mapStateToProps = (state, ownProps) => ({
   type: state.openedModals.add && 'add',
   id: state.studentId,
   currentValues:
-    state.openedModals.edit && getStudentById(state.students, state.studentId),
+    state.openedModals.edit &&
+    getStudentById(state.studentsData.students, state.studentId),
 });
 
 const mapDispatchToProps = dispatch => ({

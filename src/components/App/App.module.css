@@ -1,8 +1,17 @@
 .container {
+  width: 80%;
+  max-width: 890px;
   margin: 0 auto;
-  width: 960px;
+  border-radius: 0.4rem;
+  box-shadow: 0 0 12px #dedede;
+  background-color: white;
+  padding: 0.6rem;
 }
 
-.defaultComponents {
-  display: flex;
+@media screen and (max-width: 890px) {
+  .container {
+    width: 100%;
+    box-shadow: none;
+    border-radius: none;
+  }
 }

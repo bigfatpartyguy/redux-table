@@ -1,21 +1,11 @@
-/* eslint-disable no-shadow */
-/* eslint-disable react/no-this-in-sfc */
-/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {
-  openDeleteModal,
-  openEditModal,
-  openNewEntryModal,
-} from 'features/openedModals';
-import {setStudentId} from 'features/studentId';
 import TableHeaderCell from '../TableHeaderCell';
 import Button from '../Button';
 import PaginationContainer from '../Pagination';
 import DeleteModalContainer from '../Modals/DeleteModal';
 import AddEditModalContainer from '../Modals/AddEditModal';
-import {sortRows, getStudentById, getDateMask} from '../../features/helpers';
+import {getDateMask} from '../../features/helpers';
 import styles from './Table.module.css';
 
 const Table = props => {
@@ -29,30 +19,8 @@ const Table = props => {
     openDeleteModal,
     openEditModal,
     openNewEntryModal,
+    handleSort,
   } = props;
-
-  // this function doesn't work
-  const handleSort = value => {
-    this.setState(state => {
-      let {sortFieldName, sortDirectionAsc} = state;
-      if (sortFieldName === value) {
-        sortDirectionAsc = !sortDirectionAsc;
-      } else {
-        sortFieldName = value;
-        sortDirectionAsc = true;
-      }
-      const students = sortRows(
-        state.students,
-        sortFieldName,
-        sortDirectionAsc
-      );
-      return {
-        sortFieldName,
-        sortDirectionAsc,
-        students,
-      };
-    });
-  };
 
   const renderTableRows = () => {
     const start = (page - 1) * rowsPerPage;
@@ -148,28 +116,42 @@ const Table = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  students: state.students,
-  rowsPerPage: state.rowsPerPage,
-  page: state.page,
-  openedModals: state.openedModals,
-  studentId: state.studentId,
-  sortFieldName: state.sortFieldName,
-  sortDirectionAsc: state.sortDirectionAsc,
-});
+export default Table;
 
-const mapDispatchToProps = dispatch => ({
-  openNewEntryModal: () => dispatch(openNewEntryModal()),
-  openEditModal: id => {
-    dispatch(setStudentId(id));
-    dispatch(openEditModal(id));
-  },
-  openDeleteModal: id => {
-    dispatch(setStudentId(id));
-    dispatch(openDeleteModal());
-  },
-});
+Table.propTypes = {
+  students: PropTypes.arrayOf(
+    PropTypes.shape({
+      firstName: PropTypes.string,
+      secondName: PropTypes.string,
+      birthday: PropTypes.string,
+    })
+  ),
+  rowsPerPage: PropTypes.number,
+  page: PropTypes.number,
+  studentId: PropTypes.string,
+  sortFieldName: PropTypes.string,
+  sortDirectionAsc: PropTypes.bool,
+  openDeleteModal: PropTypes.func,
+  openEditModal: PropTypes.func,
+  openNewEntryModal: PropTypes.func,
+  handleSort: PropTypes.func,
+};
 
-const TableContainer = connect(mapStateToProps, mapDispatchToProps)(Table);
-
-export default TableContainer;
+Table.defaultProps = {
+  students: [
+    {
+      firstName: 'John',
+      secondName: 'Doe',
+      birthday: 1900,
+    },
+  ],
+  rowsPerPage: 4,
+  page: 1,
+  studentId: '',
+  sortFieldName: '',
+  sortDirectionAsc: true,
+  openDeleteModal: () => {},
+  openEditModal: () => {},
+  openNewEntryModal: () => {},
+  handleSort: () => {},
+};

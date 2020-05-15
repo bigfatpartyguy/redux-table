@@ -1,4 +1,4 @@
-import {DELETE_ENTRY, ADD_ENTRY, EDIT_ENTRY} from './actionTypes';
+import {DELETE_ENTRY, ADD_ENTRY, EDIT_ENTRY, SORT} from './actionTypes';
 
 export const deleteEntry = id => ({
   type: DELETE_ENTRY,
@@ -16,4 +16,9 @@ export const editEntry = (id, entry) => ({
     entry,
     id,
   },
+});
+
+export const sortEntries = sortField => ({
+  type: SORT,
+  payload: sortField,
 });
