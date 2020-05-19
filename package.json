@@ -30,7 +30,8 @@
     "redux-promise-middleware": "^6.1.2",
     "stylelint": "^13.3.3",
     "stylelint-config-standard": "^20.0.0",
-    "stylelint-order": "^4.0.0"
+    "stylelint-order": "^4.0.0",
+    "uuid": "^8.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
