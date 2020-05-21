@@ -1,12 +1,11 @@
 import React from 'react';
-import Counter from '../Counter';
-import Random from '../Random';
+import Table from '../Table';
+import {columns} from '../../Data';
 import classes from './App.module.css';
 
 const App = () => (
   <div className={classes.container}>
-    <Counter />
-    <Random />
+    <Table columns={columns} />
   </div>
 );
 

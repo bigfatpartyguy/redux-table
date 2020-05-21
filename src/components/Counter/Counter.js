@@ -11,7 +11,7 @@ const Counter = () => {
   const count = useCountValue();
 
   /** Create incrementCounter action, using custom hook from feature */
-  const {incrementCounter} = useActions();
+  const {incrementCounter, decrementCounter} = useActions();
 
   return (
     <div className={classes.counter}>
@@ -21,6 +21,12 @@ const Counter = () => {
         type="button"
         onClick={incrementCounter}>
         Increment by one
+      </button>
+      <button
+        className={classes.button}
+        type="button"
+        onClick={decrementCounter}>
+        Decrement by one
       </button>
       <div>
         Total value: <strong>{count}</strong>

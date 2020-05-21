@@ -1,8 +1,10 @@
 import {combineReducers, createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
 import promise from 'redux-promise-middleware';
-import {CounterReducer} from './features/counter';
-import {RandomReducer} from './features/random';
+import {tableData} from 'features/tableData';
+import {pagination} from 'features/pagination';
+import {rowId} from 'features/rowId';
+import {openedModals} from 'features/openedModals';
 import withProvider from './withProvider';
 
 /**
@@ -10,8 +12,10 @@ import withProvider from './withProvider';
  * all features of the application
  */
 const rootReducer = combineReducers({
-  count: CounterReducer,
-  random: RandomReducer,
+  tableData,
+  pagination,
+  rowId,
+  openedModals,
 });
 
 /**

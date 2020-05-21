@@ -19,7 +19,9 @@
     "prettier": "^2.0.5",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
+    "react-datepicker": "^2.15.0",
     "react-dom": "^16.13.1",
+    "react-modal": "^3.11.2",
     "react-redux": "^7.2.0",
     "react-scripts": "3.4.1",
     "react-test-renderer": "^16.13.1",
@@ -28,7 +30,8 @@
     "redux-promise-middleware": "^6.1.2",
     "stylelint": "^13.3.3",
     "stylelint-config-standard": "^20.0.0",
-    "stylelint-order": "^4.0.0"
+    "stylelint-order": "^4.0.0",
+    "uuid": "^8.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -37,6 +40,7 @@
     "eject": "react-scripts eject",
     "fix:js": "npx eslint --fix ./src/",
     "lint:js": "npx eslint ./src/",
+    "lint": "eslint \"src/**/*.{js,jsx}\" --fix",
     "lint:style": "npx stylelint ./src/",
     "fix:style": "npx stylelint ./src/ --fix"
   },
