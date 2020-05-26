@@ -28,8 +28,8 @@ const validateInputs = values => {
   ) {
     errors.password = 'required';
   }
-  if (values.password && values.password.length < 8) {
-    errors.password = 'at least 8 characters';
+  if (values.password && values.password.length < 5) {
+    errors.password = 'at least 5 characters';
   }
   if (
     Object.prototype.hasOwnProperty.call(values, 'birthday') &&

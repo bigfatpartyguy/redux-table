@@ -14,8 +14,22 @@ const LoginPage = () => {
     handleSubmit,
     errors,
   } = useFormValidation({email: '', password: ''}, validateInputs, setDisabled);
-  const onSubmit = () => console.log('submitted');
-  console.log(classes);
+
+  const onSubmit = async user => {
+    const auth = await fetch('http://localhost:8000/prod/login', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    });
+    const authJson = await auth.json();
+    console.log(authJson);
+    const userD = await fetch('http://localhost:8000/prod/user');
+    const userJson = await userD.json();
+    console.log(userJson);
+  };
+
   return (
     <div className={classes.login}>
       <h1 className={classes.login__header}>Log in to continue</h1>
