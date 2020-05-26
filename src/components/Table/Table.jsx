@@ -67,8 +67,8 @@ const Table = props => {
   };
 
   return (
-    <div>
-      <table className={styles.main}>
+    <div className={styles.container}>
+      <table>
         <thead>
           <tr>
             {columns.map(column => (

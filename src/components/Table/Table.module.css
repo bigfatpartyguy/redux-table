@@ -1,11 +1,24 @@
-.main {
-  /* table-layout: fixed; */
+.container {
+  width: 80%;
+  max-width: 890px;
+  margin: 0 auto;
+  border-radius: 0.4rem;
+  box-shadow: 0 0 12px #dedede;
+  background-color: white;
+  padding: 0.6rem;
+}
+
+@media screen and (max-width: 890px) {
+  .container {
+    width: 100%;
+    box-shadow: none;
+    border-radius: none;
+  }
 }
 
 .main tr:last-child {
   border-bottom: 2px solid #dedede;
 }
-
 
 .main th:last-child {
   width: 200px;
@@ -34,6 +47,6 @@
   color: #414141;
 }
 
-.main [value="Delete"] {
+.main [value='Delete'] {
   margin-right: 1rem;
 }

@@ -1,0 +1,27 @@
+@import url('../Button/Button.module.css');
+.login {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 450px;
+  max-width: 400px;
+  margin: 46vh auto 0;
+  transform: translateY(-50%);
+  border-radius: 0.4rem;
+  box-shadow: 0 0 12px #dedede;
+  background-color: white;
+  padding: 2rem;
+}
+
+.login__form {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.login__form button {
+  margin-top: 14px;
+  width: 100%;
+}
