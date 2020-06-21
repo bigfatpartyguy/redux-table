@@ -6,8 +6,8 @@ import classes from './App.module.css';
 
 const App = () => (
   <div className={classes.container}>
-    <LoginPage />
-    {/* <Table columns={columns} /> */}
+    {/* <LoginPage /> */}
+    <Table columns={columns} />
   </div>
 );
 

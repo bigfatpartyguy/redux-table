@@ -1,19 +1,15 @@
 import {connect} from 'react-redux';
 import {
+  sortEntries,
+  setRowId,
   openDeleteModal,
   openEditModal,
   openNewEntryModal,
-} from 'features/openedModals';
-import {setRowId} from 'features/rowId';
-import {sortEntries} from 'features/tableData';
+} from 'features/studentsData';
 import Table from './Table';
 
 const mapStateToProps = (state, ownProps) => ({
-  ...state.tableData,
-  ...state.openedModals,
-  ...state.pagination,
-  openedModals: state.openedModals,
-  rowId: state.rowId,
+  ...state.studentsData,
   ...ownProps,
 });
 

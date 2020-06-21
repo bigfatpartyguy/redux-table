@@ -1,10 +1,7 @@
 import {combineReducers, createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
 import promise from 'redux-promise-middleware';
-import {tableData} from 'features/tableData';
-import {pagination} from 'features/pagination';
-import {rowId} from 'features/rowId';
-import {openedModals} from 'features/openedModals';
+import {studentsData} from 'features/studentsData';
 import withProvider from './withProvider';
 
 /**
@@ -12,10 +9,7 @@ import withProvider from './withProvider';
  * all features of the application
  */
 const rootReducer = combineReducers({
-  tableData,
-  pagination,
-  rowId,
-  openedModals,
+  studentsData,
 });
 
 /**

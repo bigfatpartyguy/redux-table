@@ -25,9 +25,6 @@ const LoginPage = () => {
     });
     const authJson = await auth.json();
     console.log(authJson);
-    const userD = await fetch('http://localhost:8000/prod/user');
-    const userJson = await userD.json();
-    console.log(userJson);
   };
 
   return (
