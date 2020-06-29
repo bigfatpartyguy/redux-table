@@ -1,4 +1,4 @@
-.login {
+.registration {
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
@@ -13,14 +13,24 @@
   padding: 2rem;
 }
 
-.login__form {
+.registration form {
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  justify-content: space-between;
 }
 
-.login__form button {
-  margin-top: 14px;
+.registration form * {
   width: 100%;
+}
+
+.errorMsg {
+  color: #ff3636;
+}
+
+.regLabel span {
+  display: inline-block;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
 }
