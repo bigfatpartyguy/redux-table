@@ -1,12 +1,16 @@
-import React from 'react';
-import {Formik, Form, Field, ErrorMessage, useField} from 'formik';
+import React, {useState} from 'react';
+import {Formik, Form} from 'formik';
 import {validateRegistration} from 'features/validation';
+import Field from './Field';
 import Button from '../Button';
 import classes from './RegistrationPage.module.css';
 
 const Registration = () => {
+  const [isDisabled, setIsDisabled] = useState(true);
+
   return (
     <div className={classes.registration}>
+      <h1>Sign Up</h1>
       <Formik
         initialValues={{
           firstName: '',
@@ -15,48 +19,34 @@ const Registration = () => {
           password: '',
           repeatedPassword: '',
         }}
-        validate={validateRegistration}
+        validate={values => {
+          const errors = validateRegistration(values);
+          if (Object.keys(errors).length) {
+            setIsDisabled(true);
+          } else {
+            setIsDisabled(false);
+          }
+          return errors;
+        }}
         onSubmit={(values, ...rest) => {
-          console.log(rest);
           alert(JSON.stringify(values, null, 2));
         }}>
         <Form>
-          <div>
-            <label className={classes.regLabel} htmlFor="firstName">
-              <span>First Name</span>
-              <Field id="firstName" name="firstName" type="text" />
-            </label>
-            <ErrorMessage
-              className={classes.errorMsg}
-              name="firstName"
-              component="div"
-            />
-          </div>
-          <label className={classes.regLabel} htmlFor="lastName">
-            <span>Last Name</span>
-            <Field id="lastName" name="lastName" type="text" />
-          </label>
-          <ErrorMessage name="lastName" />
-          <label className={classes.regLabel} htmlFor="email">
-            <span>Email</span>
-            <Field id="email" name="email" type="email" autoComplete="off" />
-          </label>
-          <ErrorMessage name="email" />
-          <label className={classes.regLabel} htmlFor="password">
-            <span>Password</span>
-            <Field id="password" name="password" type="password" />
-          </label>
-          <ErrorMessage name="password" />
-          <label className={classes.regLabel} htmlFor="repeatedPassword">
-            <span>Repeat Password</span>
-            <Field
-              id="repeatedPassword"
-              name="repeatedPassword"
-              type="password"
-            />
-          </label>
-          <ErrorMessage name="repeatedPassword" />
-          <Button type="submit" btnRole="submit" text="Sign Up" />
+          <Field label="First Name" name="firstName" type="text" />
+          <Field label="Last Name" name="lastName" type="text" />
+          <Field label="Email" name="email" type="email" />
+          <Field label="Password" name="password" type="password" />
+          <Field
+            label="Repeat Password"
+            name="repeatedPassword"
+            type="password"
+          />
+          <Button
+            disabled={isDisabled}
+            type="submit"
+            btnRole="submit"
+            text="Sign Up"
+          />
         </Form>
       </Formik>
     </div>
