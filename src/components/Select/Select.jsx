@@ -1,32 +1,36 @@
 import React from 'react';
+import Select from 'react-select';
 import PropTypes from 'prop-types';
-import styles from './Select.module.css';
 
-export default function Select(props) {
-  const options = props.options.map(val => (
-    <option key={val} value={val}>
-      {val}
-    </option>
-  ));
+const customStyles = {
+  control: provided => ({
+    ...provided,
+    borderRadius: 0,
+    height: '100%',
+  }),
+};
 
+export default function SelectComponent({options, onChange}) {
   return (
-    <select
-      className={styles.rowsPerPage}
-      value={props.value}
-      onChange={props.onChange}>
-      {options}
-    </select>
+    <Select
+      styles={customStyles}
+      defaultValue={options[1]}
+      options={options}
+      onChange={selected => onChange(selected.value)}
+    />
   );
 }
 
-Select.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.number),
-  value: PropTypes.number,
+SelectComponent.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.number)),
   onChange: PropTypes.func,
 };
 
-Select.defaultProps = {
-  options: [2, 4, 6],
-  value: 4,
+SelectComponent.defaultProps = {
+  options: [
+    {value: 2, label: 2},
+    {value: 4, label: 4},
+    {value: 6, label: 6},
+  ],
   onChange: () => {},
 };

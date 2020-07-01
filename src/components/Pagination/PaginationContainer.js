@@ -23,9 +23,9 @@ const mapDispatchToProps = dispatch => ({
   handlePageClick: event => {
     dispatch(setPage(+event.target.value));
   },
-  onChange: event => {
+  onChange: selectedPage => {
     dispatch(resetPage());
-    dispatch(setRowsPerPage(+event.target.value));
+    dispatch(setRowsPerPage(selectedPage));
   },
 });
 

@@ -93,7 +93,13 @@ const Table = props => {
           onClick={openNewEntryModal}
         />
       </div>
-      <PaginationContainer selectOptions={[2, 4, 6]} />
+      <PaginationContainer
+        selectOptions={[
+          {value: 2, label: 2},
+          {value: 4, label: 4},
+          {value: 6, label: 6},
+        ]}
+      />
       <DeleteModalContainer id={rowId} />
       <AddEditModalContainer columns={columns} />
     </div>
