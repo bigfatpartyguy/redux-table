@@ -29,14 +29,26 @@ const Registration = () => {
           return errors;
         }}
         onSubmit={(values, ...rest) => {
-          alert(JSON.stringify(values, null, 2));
+          const {repeatedPassword, ...user} = {...values, role: 'master'};
+          console.log(JSON.stringify(user, null, 2));
         }}>
         <Form>
-          <Field label="First Name" name="firstName" type="text" />
-          <Field label="Last Name" name="lastName" type="text" />
-          <Field label="Email" name="email" type="email" />
-          <Field label="Password" name="password" type="password" />
           <Field
+            id="firstName"
+            label="First Name"
+            name="firstName"
+            type="text"
+          />
+          <Field id="lastName" label="Last Name" name="lastName" type="text" />
+          <Field id="email" label="Email" name="email" type="email" />
+          <Field
+            id="password"
+            label="Password"
+            name="password"
+            type="password"
+          />
+          <Field
+            id="repeatedPassword"
             label="Repeat Password"
             name="repeatedPassword"
             type="password"
