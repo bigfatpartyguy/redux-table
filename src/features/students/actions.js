@@ -13,7 +13,18 @@ import {
   OPEN_EDIT_MODAL,
   OPEN_NEW_ENTRY_MODAL,
   CLOSE_MODAL,
-} from './actionTypes';
+} from './constants';
+
+import {fetchStudentsRequest} from './services';
+
+export const fetchStudents = (page, limit, search = {}) => async dispatch => {
+  const result = await fetchStudentsRequest(1, 5, search);
+  // TODO замапить
+  // написать ещё один экшин который будет называться fetchStudentsSuccess и положить то что замаплено в стор
+  // отобразить все логично
+  // eslint-disable-next-line no-debugger
+  debugger;
+};
 
 export const deleteEntry = id => ({
   type: DELETE_ENTRY,

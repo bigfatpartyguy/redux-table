@@ -5,7 +5,7 @@ import {
   nextPage,
   prevPage,
   setRowsPerPage,
-} from 'features/studentsData';
+} from 'features/students';
 import Pagination from './Pagination';
 
 const mapStateToProps = (state, ownProps) => ({

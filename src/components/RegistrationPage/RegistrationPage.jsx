@@ -61,8 +61,19 @@ const Registration = () => {
           />
         </Form>
       </Formik>
+      <Test />
     </div>
   );
 };
+
+class Test extends React.Component {
+  getThis = () => console.log(this);
+
+  render = () => (
+    <button type="button" onClick={this.getThis}>
+      Click
+    </button>
+  );
+}
 
 export default Registration;

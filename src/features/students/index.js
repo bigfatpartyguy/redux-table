@@ -1,4 +1,4 @@
-export {default as studentsData} from './tableDataReducer';
+export {default as studentsData} from './reducer';
 export {
   deleteEntry,
   addEntry,
@@ -14,4 +14,5 @@ export {
   openEditModal,
   openNewEntryModal,
   closeModal,
-} from './actionCreators';
+  fetchStudents,
+} from './actions';

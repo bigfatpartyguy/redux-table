@@ -5,7 +5,9 @@ import {
   openDeleteModal,
   openEditModal,
   openNewEntryModal,
-} from 'features/studentsData';
+  fetchStudents,
+} from 'features/students';
+
 import Table from './Table';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -15,6 +17,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = dispatch => ({
   openNewEntryModal: () => dispatch(openNewEntryModal()),
+  fetchStudents: (...params) => dispatch(fetchStudents(...params)),
   openEditModal: id => {
     dispatch(setRowId(id));
     dispatch(openEditModal(id));

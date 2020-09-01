@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {deleteEntry, closeModal} from 'features/studentsData';
+import {deleteEntry, closeModal} from 'features/students';
 import DeleteModal from './DeleteModal';
 
 const mapStateToProps = (state, ownProps) => ({

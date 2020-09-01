@@ -16,10 +16,10 @@ import {
   OPEN_EDIT_MODAL,
   OPEN_NEW_ENTRY_MODAL,
   CLOSE_MODAL,
-} from './actionTypes';
+} from './constants';
 
 const initialState = {
-  data: sortRows(tableData, columns[0].key, true),
+  data: [],
   sortFieldName: columns[0].key,
   sortDirectonAsc: true,
   rowId: null,

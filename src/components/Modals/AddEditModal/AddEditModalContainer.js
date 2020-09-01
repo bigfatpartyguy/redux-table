@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {addEntry, editEntry, closeModal} from 'features/studentsData';
+import {addEntry, editEntry, closeModal} from 'features/students';
 import AddEditModal from './AddEditModal';
 import {getStudentById} from '../../../features/helpers';
 
