@@ -17,7 +17,26 @@ import {
 
 import {fetchStudentsRequest} from './services';
 
+// Temporary import.
+import {saveTokenInfo} from '../../services/token';
+
 export const fetchStudents = (page, limit, search = {}) => async dispatch => {
+  // Temporary function for login.
+  async function fetchAndSetToken() {
+    const response = await fetch('http://localhost:8000/prod/login', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: 'admin@mail.dev',
+        password: 'admin',
+      }),
+    });
+    saveTokenInfo(response.headers.get('access-token'));
+  }
+  await fetchAndSetToken();
+
   const result = await fetchStudentsRequest(1, 5, search);
   // TODO замапить
   // написать ещё один экшин который будет называться fetchStudentsSuccess и положить то что замаплено в стор
