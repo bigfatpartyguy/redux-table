@@ -16,6 +16,7 @@ import {
 } from './constants';
 
 import {fetchStudentsRequest} from './services';
+import {mapStudentsToStore} from './mappers';
 
 // Temporary import.
 import {saveTokenInfo} from '../../services/token';
@@ -38,6 +39,9 @@ export const fetchStudents = (page, limit, search = {}) => async dispatch => {
   await fetchAndSetToken();
 
   const result = await fetchStudentsRequest(1, 5, search);
+
+  const mappedData = mapStudentsToStore(result.data);
+  console.log(mappedData);
   // TODO замапить
   // написать ещё один экшин который будет называться fetchStudentsSuccess и положить то что замаплено в стор
   // отобразить все логично
