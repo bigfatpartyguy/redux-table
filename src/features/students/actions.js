@@ -1,4 +1,5 @@
 import {
+  SUBMIT_INITIAL_DATA,
   DELETE_ENTRY,
   ADD_ENTRY,
   EDIT_ENTRY,
@@ -40,14 +41,24 @@ export const fetchStudents = (page, limit, search = {}) => async dispatch => {
 
   const result = await fetchStudentsRequest(1, 5, search);
 
-  const mappedData = mapStudentsToStore(result.data);
-  console.log(mappedData);
+  const mappedData = {
+    data: mapStudentsToStore(result.data),
+    page: result.page,
+    rowsPerPage: result.limit,
+  };
+  dispatch(fetchStudentsSuccess(mappedData));
+
   // TODO замапить
   // написать ещё один экшин который будет называться fetchStudentsSuccess и положить то что замаплено в стор
   // отобразить все логично
   // eslint-disable-next-line no-debugger
-  debugger;
+  // debugger;
 };
+
+const fetchStudentsSuccess = data => ({
+  type: SUBMIT_INITIAL_DATA,
+  payload: data,
+});
 
 export const deleteEntry = id => ({
   type: DELETE_ENTRY,

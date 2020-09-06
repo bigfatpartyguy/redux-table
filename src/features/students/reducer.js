@@ -2,6 +2,7 @@ import {v4 as uuidv4} from 'uuid';
 import tableData, {columns} from '../../Data';
 import {sortRows} from '../helpers';
 import {
+  SUBMIT_INITIAL_DATA,
   DELETE_ENTRY,
   ADD_ENTRY,
   EDIT_ENTRY,
@@ -34,6 +35,15 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case SUBMIT_INITIAL_DATA: {
+      const {data, rowsPerPage, page} = action.payload;
+      return {
+        ...state,
+        data,
+        rowsPerPage,
+        page,
+      };
+    }
     case DELETE_ENTRY:
       return {
         ...state,
