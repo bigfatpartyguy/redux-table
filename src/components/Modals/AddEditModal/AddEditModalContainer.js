@@ -1,16 +1,15 @@
 import {connect} from 'react-redux';
-import {closeModal} from 'features/openedModals';
-import {addEntry, editEntry} from 'features/tableData';
+import {addEntry, editEntry, closeModal} from 'features/students';
 import AddEditModal from './AddEditModal';
 import {getStudentById} from '../../../features/helpers';
 
 const mapStateToProps = (state, ownProps) => ({
-  isOpen: state.openedModals.add || state.openedModals.edit,
-  type: state.openedModals.add && 'add',
-  id: state.rowId,
+  isOpen: state.studentsData.modals.add || state.studentsData.modals.edit,
+  type: state.studentsData.modals.add && 'add',
+  id: state.studentsData.rowId,
   currentValues:
-    state.openedModals.edit &&
-    getStudentById(state.tableData.data, state.rowId),
+    state.studentsData.modals.edit &&
+    getStudentById(state.studentsData.data, state.studentsData.rowId),
   ...ownProps,
 });
 

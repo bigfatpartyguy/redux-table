@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
+import {useFormValidation, validateInputs} from 'features/validation';
 import Input from '../Input';
 import styles from './SubmitRow.module.css';
 import 'react-datepicker/dist/react-datepicker.css';
-import useFormValidation from './useFormValidation';
-import validateInputs from './validateInputs';
+// import useFormValidation from '../../features/validation/useFormValidation';
+// import validateInputs from '../../features/validation/validateInputs';
 
 export default function SubmitRow(props) {
   const {currentValues, setDisabled} = props;

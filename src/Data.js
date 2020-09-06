@@ -93,6 +93,14 @@ export const columns = [
     title: 'Email',
     key: 'email',
   },
+  {
+    title: 'Gender',
+    key: 'gender',
+  },
+  {
+    title: 'IP',
+    key: 'ip',
+  },
 ];
 
 students.forEach(student => {

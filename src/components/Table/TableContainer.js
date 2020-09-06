@@ -1,24 +1,23 @@
 import {connect} from 'react-redux';
 import {
+  sortEntries,
+  setRowId,
   openDeleteModal,
   openEditModal,
   openNewEntryModal,
-} from 'features/openedModals';
-import {setRowId} from 'features/rowId';
-import {sortEntries} from 'features/tableData';
+  fetchStudents,
+} from 'features/students';
+
 import Table from './Table';
 
 const mapStateToProps = (state, ownProps) => ({
-  ...state.tableData,
-  ...state.openedModals,
-  ...state.pagination,
-  openedModals: state.openedModals,
-  rowId: state.rowId,
+  ...state.studentsData,
   ...ownProps,
 });
 
 const mapDispatchToProps = dispatch => ({
   openNewEntryModal: () => dispatch(openNewEntryModal()),
+  fetchStudents: (...params) => dispatch(fetchStudents(...params)),
   openEditModal: id => {
     dispatch(setRowId(id));
     dispatch(openEditModal(id));

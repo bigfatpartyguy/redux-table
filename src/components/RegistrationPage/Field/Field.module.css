@@ -1,0 +1,16 @@
+.field {
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.errorMsg {
+  color: #ff3636;
+  text-align: right;
+  white-space: nowrap;
+}

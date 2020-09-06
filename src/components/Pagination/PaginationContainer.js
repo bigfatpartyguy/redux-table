@@ -5,13 +5,15 @@ import {
   nextPage,
   prevPage,
   setRowsPerPage,
-} from 'features/pagination';
+} from 'features/students';
 import Pagination from './Pagination';
 
 const mapStateToProps = (state, ownProps) => ({
-  value: state.pagination.rowsPerPage,
-  page: state.pagination.page,
-  pages: Math.ceil(state.tableData.data.length / state.pagination.rowsPerPage),
+  value: state.studentsData.rowsPerPage,
+  page: state.studentsData.page,
+  pages: Math.ceil(
+    state.studentsData.data.length / state.studentsData.rowsPerPage
+  ),
   ...ownProps,
 });
 
@@ -21,9 +23,9 @@ const mapDispatchToProps = dispatch => ({
   handlePageClick: event => {
     dispatch(setPage(+event.target.value));
   },
-  onChange: event => {
+  onChange: selectedPage => {
     dispatch(resetPage());
-    dispatch(setRowsPerPage(+event.target.value));
+    dispatch(setRowsPerPage(selectedPage));
   },
 });
 

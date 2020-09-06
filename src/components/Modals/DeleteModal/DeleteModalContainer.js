@@ -1,10 +1,9 @@
 import {connect} from 'react-redux';
-import {closeModal} from 'features/openedModals';
-import {deleteEntry} from 'features/tableData';
+import {deleteEntry, closeModal} from 'features/students';
 import DeleteModal from './DeleteModal';
 
 const mapStateToProps = (state, ownProps) => ({
-  isOpen: state.openedModals.delete,
+  isOpen: state.studentsData.modals.delete,
   ...ownProps,
 });
 

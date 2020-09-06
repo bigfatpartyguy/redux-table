@@ -1,10 +1,7 @@
 import {combineReducers, createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
-import promise from 'redux-promise-middleware';
-import {tableData} from 'features/tableData';
-import {pagination} from 'features/pagination';
-import {rowId} from 'features/rowId';
-import {openedModals} from 'features/openedModals';
+import thunk from 'redux-thunk';
+import {studentsData} from 'features/students';
 import withProvider from './withProvider';
 
 /**
@@ -12,10 +9,7 @@ import withProvider from './withProvider';
  * all features of the application
  */
 const rootReducer = combineReducers({
-  tableData,
-  pagination,
-  rowId,
-  openedModals,
+  studentsData,
 });
 
 /**
@@ -30,7 +24,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 /** Create Redux store with root reducer and middleware included */
 export const store = createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware(promise))
+  composeEnhancers(applyMiddleware(thunk))
 );
 
 /**

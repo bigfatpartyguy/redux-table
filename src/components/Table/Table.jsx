@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import TableHeaderCell from '../TableHeaderCell';
 import Button from '../Button';
@@ -21,7 +21,12 @@ const Table = props => {
     openEditModal,
     openNewEntryModal,
     columns,
+    fetchStudents,
   } = props;
+
+  useEffect(() => {
+    fetchStudents();
+  }, []);
 
   const renderTableRows = () => {
     const start = (page - 1) * rowsPerPage;
@@ -67,7 +72,7 @@ const Table = props => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <table className={styles.main}>
         <thead>
           <tr>
@@ -93,7 +98,13 @@ const Table = props => {
           onClick={openNewEntryModal}
         />
       </div>
-      <PaginationContainer selectOptions={[2, 4, 6]} />
+      <PaginationContainer
+        selectOptions={[
+          {value: 2, label: 2},
+          {value: 4, label: 4},
+          {value: 6, label: 6},
+        ]}
+      />
       <DeleteModalContainer id={rowId} />
       <AddEditModalContainer columns={columns} />
     </div>
@@ -126,6 +137,7 @@ Table.propTypes = {
   openEditModal: PropTypes.func,
   openNewEntryModal: PropTypes.func,
   handleSort: PropTypes.func,
+  fetchStudents: PropTypes.func.isRequired,
 };
 
 Table.defaultProps = {

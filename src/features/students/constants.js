@@ -1,0 +1,15 @@
+export const SUBMIT_INITIAL_DATA = 'SUBMIT_INITIAL_DATA';
+export const DELETE_ENTRY = 'DELETE_ENTRY';
+export const ADD_ENTRY = 'ADD_ENTRY';
+export const EDIT_ENTRY = 'EDIT_ENTRY';
+export const SORT = 'SORT';
+export const SET_ROW_ID = 'SET_ROW_ID';
+export const RESET_PAGE = 'RESET_PAGE';
+export const SET_PAGE = 'SET_PAGE';
+export const INCREMENT_PAGE = 'INCREMENT_PAGE';
+export const DECREMENT_PAGE = 'DECREMENT_PAGE';
+export const SET_ROWS_PER_PAGE = 'SET_ROWS_PER_PAGE';
+export const OPEN_DELETE_MODAL = 'OPEN_DELETE_MODAL';
+export const OPEN_EDIT_MODAL = 'OPEN_EDIT_MODAL';
+export const OPEN_NEW_ENTRY_MODAL = 'OPEN_NEW_ENTRY_MODAL';
+export const CLOSE_MODAL = 'CLOSE_MODAL';
