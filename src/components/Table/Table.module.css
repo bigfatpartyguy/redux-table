@@ -1,6 +1,6 @@
 .container {
   width: 80%;
-  max-width: 1024px;
+  max-width: 1200px;
   margin: 0 auto;
   border-radius: 0.4rem;
   box-shadow: 0 0 12px #dedede;
@@ -8,7 +8,7 @@
   padding: 0.6rem;
 }
 
-@media screen and (max-width: 890px) {
+@media screen and (max-width: 1200px) {
   .container {
     width: 100%;
     box-shadow: none;
@@ -22,11 +22,12 @@
 
 .main th:last-child {
   width: 200px;
-  text-align: right;
+  text-align: left;
 }
 
-.main td:last-child {
-  text-align: right;
+.main td:last-child:not(:only-child) {
+  display: flex;
+  justify-content: space-between;
 }
 
 .newEntryRow {

@@ -73,7 +73,7 @@ const Table = props => {
 
   return (
     <div className={styles.container}>
-      <table>
+      <table className={styles.main}>
         <thead>
           <tr>
             {columns.map(column => (
