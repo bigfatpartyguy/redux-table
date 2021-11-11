@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import TableHeaderCell from '../TableHeaderCell';
 import Button from '../Button';
@@ -23,10 +23,22 @@ const Table = props => {
     columns,
   } = props;
 
+  const [searchStr, setSearchStr] = useState('');
+
+  // eslint-disable-next-line no-shadow
+  const filterData = (data, fieldsToFilter) => {
+    const reg = new RegExp(`${searchStr}`, 'gi');
+    return data.filter(entry => {
+      // eslint-disable-next-line react/prop-types
+      return fieldsToFilter.some(fieldName => reg.test(entry[fieldName]));
+    });
+  };
+
   const renderTableRows = () => {
+    const filteredData = filterData(data, ['firstName', 'secondName', 'email']);
     const start = (page - 1) * rowsPerPage;
     const end = start + rowsPerPage;
-    const pageToDisplay = data
+    const pageToDisplay = filteredData
       .map(row => {
         const {id} = row;
         return (
@@ -52,6 +64,7 @@ const Table = props => {
         );
       })
       .slice(start, end);
+
     const emptyRows = Array(rowsPerPage - pageToDisplay.length)
       .fill(null)
       .map((empty, ind) => {
@@ -68,6 +81,15 @@ const Table = props => {
 
   return (
     <div>
+      <div className={styles.filter}>
+        <input
+          id="filter"
+          type="text"
+          value={searchStr}
+          onChange={e => setSearchStr(e.target.value)}
+          placeholder="Enter text to filter"
+        />
+      </div>
       <table className={styles.main}>
         <thead>
           <tr>
@@ -93,7 +115,7 @@ const Table = props => {
           onClick={openNewEntryModal}
         />
       </div>
-      <PaginationContainer selectOptions={[2, 4, 6]} />
+      <PaginationContainer selectOptions={[10, 20, 30, 40, 50]} />
       <DeleteModalContainer id={rowId} />
       <AddEditModalContainer columns={columns} />
     </div>

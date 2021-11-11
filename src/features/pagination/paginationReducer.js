@@ -8,7 +8,7 @@ import {
 
 const initialState = {
   page: 1,
-  rowsPerPage: 4,
+  rowsPerPage: 10,
 };
 
 export default (state = initialState, action) => {
